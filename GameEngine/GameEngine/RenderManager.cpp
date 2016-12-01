@@ -39,22 +39,6 @@ bool RenderManager:: openWindow() {
 
 	return success;
 }
-
-bool RenderManager::loadMedia(char* direction) {
-	//Loading success flag
-	bool success = true;
-
-	//Load splash image
-	gImage = SDL_LoadBMP(direction);
-	if (gImage == NULL)
-	{
-		printf("Unable to load image %s! SDL Error: %s\n", direction, SDL_GetError());
-		success = false;
-	}
-
-	return success;
-}
-
 SDL_Surface* RenderManager::loadSurface(char* path)
 {
 	//The final optimized image
