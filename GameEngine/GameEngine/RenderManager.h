@@ -18,6 +18,7 @@ public:
 	SDL_Window* gWindow = NULL;
 	//The surface contained by the window
 	SDL_Surface* gScreenSurface = NULL;
+	void drawSurface(SDL_Surface* surface);//dibuja la superficie optimizada a nuestra ventana
 private:	
 	RenderManager();
 	~RenderManager();

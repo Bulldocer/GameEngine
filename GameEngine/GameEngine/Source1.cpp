@@ -14,11 +14,11 @@ int main(int argc, char* args[])
 	else
 	{
 		//Load media
-		image = ManagerOfManagers::GetInstance().getRender().loadSurface("Images/surprise.bmp");
+		image = ManagerOfManagers::GetInstance().getRender().loadSurface("Images/surprise2.bmp");
 		if (image != NULL)
 		{
 			//Apply the image
-			//SDL_BlitSurface(image, NULL, ManagerOfManagers::GetInstance().getRender().gScreenSurface, NULL);
+			ManagerOfManagers::GetInstance().getRender().drawSurface(image);
 			//Update the surface
 			SDL_UpdateWindowSurface(ManagerOfManagers::GetInstance().getRender().gWindow);
 			//Wait two seconds

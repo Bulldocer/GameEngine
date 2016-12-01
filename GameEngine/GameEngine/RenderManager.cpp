@@ -61,28 +61,34 @@ SDL_Surface* RenderManager::loadSurface(char* path)
 
 		//Get rid of old loaded surface
 		SDL_FreeSurface(loadedSurface);
-		//Apply the image stretched
-		if (optimizedSurface->h > SCREEN_HEIGHT)
-		{
-			SDL_Rect stretchRect;
-			stretchRect.x = 0;
-			stretchRect.y = 0;
-			stretchRect.w = (SCREEN_HEIGHT * optimizedSurface->w) / optimizedSurface->h;
-			stretchRect.h = SCREEN_HEIGHT;
-			SDL_BlitScaled(optimizedSurface, NULL, gScreenSurface, &stretchRect);
-			//optimizedSurface->w = (SCREEN_HEIGHT * optimizedSurface->w)/ optimizedSurface->h;
-			//optimizedSurface->h = SCREEN_HEIGHT;	
-		}
-		else if (optimizedSurface->w > SCREEN_WIDTH)
-		{
-			optimizedSurface->h = (SCREEN_WIDTH * optimizedSurface->h) / optimizedSurface->w;
-			optimizedSurface->w = SCREEN_WIDTH;
-		}
 	}
 
 	return optimizedSurface;
 }
-
+void RenderManager::drawSurface(SDL_Surface* surface)
+{
+	//Apply the image stretched
+	if (surface->h > gScreenSurface->h)
+	{
+		SDL_Rect stretchRect;
+		stretchRect.x = 0;
+		stretchRect.y = 0;
+		stretchRect.w = (gScreenSurface->h * surface->w) / surface->h;
+		stretchRect.h = gScreenSurface->h;
+		SDL_BlitScaled(surface, NULL, gScreenSurface, &stretchRect);
+	}
+	else if (surface->w > gScreenSurface->w)
+	{
+		SDL_Rect stretchRect;
+		stretchRect.x = 0;
+		stretchRect.y = 0;
+		stretchRect.w = gScreenSurface->w;
+		stretchRect.h = (gScreenSurface->w * surface->h) / surface->w;
+		SDL_BlitScaled(surface, NULL, gScreenSurface, &stretchRect);
+	}
+	else
+		SDL_BlitSurface(surface, NULL, gScreenSurface, NULL);
+}
 void RenderManager::close() {
 	//Destroy window
 	SDL_DestroyWindow(gWindow);
