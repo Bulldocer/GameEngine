@@ -18,7 +18,7 @@ int main(int argc, char* args[])
 		if (image != NULL)
 		{
 			//Apply the image
-			SDL_BlitSurface(image, NULL, ManagerOfManagers::GetInstance().getRender().gScreenSurface, NULL);
+			//SDL_BlitSurface(image, NULL, ManagerOfManagers::GetInstance().getRender().gScreenSurface, NULL);
 			//Update the surface
 			SDL_UpdateWindowSurface(ManagerOfManagers::GetInstance().getRender().gWindow);
 			//Wait two seconds
