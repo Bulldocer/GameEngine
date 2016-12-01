@@ -6,7 +6,7 @@ class ImageComponent : public Component
 public:
 	ImageComponent();
 	~ImageComponent();
-	Sprite sprite;
-	Sprite anim[];
+	Sprite* sprite;
+	Sprite* anim[]; //array de punteros a sprites
 };
 
