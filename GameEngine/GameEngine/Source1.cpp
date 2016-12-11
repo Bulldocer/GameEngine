@@ -14,7 +14,7 @@ int main(int argc, char* args[])
 	else
 	{
 		//Load media
-		image = ManagerOfManagers::GetInstance().getRender().loadSurface("Images/surprise2.bmp");
+		image = ManagerOfManagers::GetInstance().getRender().loadSurfacePNG("Images/loaded.png");
 		if (image != NULL)
 		{
 			//Apply the image

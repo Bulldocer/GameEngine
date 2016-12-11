@@ -34,12 +34,32 @@ bool RenderManager:: openWindow() {
 		{
 			//Get window surface
 			gScreenSurface = SDL_GetWindowSurface(gWindow);
+			//Create renderer for window
+			gRenderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+			if (gRenderer == NULL)
+			{
+				printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
+				success = false;
+			}
+			else
+			{
+				//Initialize renderer color
+				SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+
+				//Initialize PNG loading
+				int imgFlags = IMG_INIT_PNG;
+				if (!(IMG_Init(imgFlags) & imgFlags))
+				{
+					printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
+					success = false;
+				}
+			}
 		}
 	}
 
 	return success;
 }
-SDL_Surface* RenderManager::loadSurface(char* path)
+SDL_Surface* RenderManager::loadSurfaceBMP(char* path)
 {
 	//The final optimized image
 	SDL_Surface* optimizedSurface = NULL;
@@ -49,6 +69,32 @@ SDL_Surface* RenderManager::loadSurface(char* path)
 	if (loadedSurface == NULL)
 	{
 		printf("Unable to load image %s! SDL Error: %s\n", path, SDL_GetError());
+	}
+	else
+	{
+		//Convert surface to screen format
+		optimizedSurface = SDL_ConvertSurface(loadedSurface, gScreenSurface->format, NULL);
+		if (optimizedSurface == NULL)
+		{
+			printf("Unable to optimize image %s! SDL Error: %s\n", path, SDL_GetError());
+		}
+
+		//Get rid of old loaded surface
+		SDL_FreeSurface(loadedSurface);
+	}
+
+	return optimizedSurface;
+}
+SDL_Surface* RenderManager::loadSurfacePNG(char* path)
+{
+	//The final optimized image
+	SDL_Surface* optimizedSurface = NULL;
+
+	//Load image at specified path
+	SDL_Surface* loadedSurface = IMG_Load(path);
+	if (loadedSurface == NULL)
+	{
+		printf("Unable to load image %s! SDL Error: %s\n", path, IMG_GetError());
 	}
 	else
 	{
@@ -90,10 +136,30 @@ void RenderManager::drawSurface(SDL_Surface* surface, float x, float y)
 		SDL_BlitSurface(surface, NULL, gScreenSurface, NULL);
 }
 void RenderManager::close() {
+	//Deallocate surface
+	SDL_FreeSurface(gScreenSurface);
+	gScreenSurface = NULL;
+
 	//Destroy window
+	SDL_DestroyRenderer(gRenderer);
 	SDL_DestroyWindow(gWindow);
 	gWindow = NULL;
+	gRenderer = NULL;
+
 
 	//Quit SDL subsystems
+	IMG_Quit();
 	SDL_Quit();
+}
+
+SDL_Texture* RenderManager::loadTexture(SDL_Surface* surface)
+{
+	//The final texture
+	SDL_Texture* newTexture = NULL;
+	newTexture = SDL_CreateTextureFromSurface(gRenderer, surface);
+	if (newTexture == NULL)
+	{
+		printf("Unable to create texture from surface! SDL Error: %s\n",SDL_GetError());
+	}
+	return newTexture;
 }

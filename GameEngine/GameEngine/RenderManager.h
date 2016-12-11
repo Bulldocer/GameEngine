@@ -1,9 +1,9 @@
 #include "Singleton.h"
-//Using SDL and standard IO
+//Using SDL, SDL_image and standard IO
 #include <SDL.h>
+#include <SDL_image.h>
 #include <stdio.h>
 #include <string.h>
-#include <array>
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 640;
@@ -13,17 +13,18 @@ class RenderManager : public Singleton<RenderManager>
 friend class Singleton<RenderManager>;
 public:
 	bool openWindow(); //crea y devuelve un puntoro a la ventana
-	SDL_Surface* loadSurface(char* path);  //pasamos la direccion de la imagen y devuelve un puntero de una superficie con la imagen
+	SDL_Surface* loadSurfaceBMP(char* path);  //pasamos la direccion de la imagen y devuelve un puntero de una superficie con la imagen
+	SDL_Surface* loadSurfacePNG(char* path);
 	void close();
+	void drawSurface(SDL_Surface* surface, float x, float y); //dibuja la superficie optimizada a nuestra ventana en una posición determinada
+	SDL_Texture* loadTexture(SDL_Surface* surface);  //carga una hoja de sprites
 	//The window we'll be rendering to
 	SDL_Window* gWindow = NULL;
 	//The surface contained by the window
 	SDL_Surface* gScreenSurface = NULL;
-	void drawSurface(SDL_Surface* surface, float x, float y);//dibuja la superficie optimizada a nuestra ventana en una posición determinada
-	//SDL_Surface* images[]; // Esto deberia ser un array donde metamos y quitemos las diferentes imagenes, para que se encarge el render de 
-							// vaciar las diferentes superficies que utilizemos y no otro componente y que luego la funcion close()/deleteSurface()
-							// se encargen de liberar el espacio
-	//void deleteSurface(int pos);
+	//The window renderer
+	SDL_Renderer* gRenderer = NULL;
+	
 private:	
 	RenderManager();
 	~RenderManager();
