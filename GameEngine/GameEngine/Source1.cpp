@@ -18,7 +18,7 @@ int main(int argc, char* args[])
 		if (image != NULL)
 		{
 			//Apply the image
-			ManagerOfManagers::GetInstance().getRender().drawSurface(image);
+			ManagerOfManagers::GetInstance().getRender().drawSurface(image,0,0);
 			//Update the surface
 			SDL_UpdateWindowSurface(ManagerOfManagers::GetInstance().getRender().gWindow);
 			//Wait two seconds

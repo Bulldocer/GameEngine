@@ -65,14 +65,14 @@ SDL_Surface* RenderManager::loadSurface(char* path)
 
 	return optimizedSurface;
 }
-void RenderManager::drawSurface(SDL_Surface* surface)
+void RenderManager::drawSurface(SDL_Surface* surface, float x, float y)
 {
 	//Apply the image stretched
 	if (surface->h > gScreenSurface->h)
 	{
 		SDL_Rect stretchRect;
-		stretchRect.x = 0;
-		stretchRect.y = 0;
+		stretchRect.x = x;
+		stretchRect.y = y;
 		stretchRect.w = (gScreenSurface->h * surface->w) / surface->h;
 		stretchRect.h = gScreenSurface->h;
 		SDL_BlitScaled(surface, NULL, gScreenSurface, &stretchRect);
@@ -80,8 +80,8 @@ void RenderManager::drawSurface(SDL_Surface* surface)
 	else if (surface->w > gScreenSurface->w)
 	{
 		SDL_Rect stretchRect;
-		stretchRect.x = 0;
-		stretchRect.y = 0;
+		stretchRect.x = x;
+		stretchRect.y = y;
 		stretchRect.w = gScreenSurface->w;
 		stretchRect.h = (gScreenSurface->w * surface->h) / surface->w;
 		SDL_BlitScaled(surface, NULL, gScreenSurface, &stretchRect);
