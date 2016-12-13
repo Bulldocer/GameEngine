@@ -111,7 +111,7 @@ SDL_Surface* RenderManager::loadSurfacePNG(char* path)
 
 	return optimizedSurface;
 }
-void RenderManager::drawSurface(SDL_Surface* surface, float x, float y)
+/*void RenderManager::drawSurface(SDL_Surface* surface, float x, float y)
 {
 	//Apply the image stretched
 	if (surface->h > gScreenSurface->h)
@@ -119,8 +119,10 @@ void RenderManager::drawSurface(SDL_Surface* surface, float x, float y)
 		SDL_Rect stretchRect;
 		stretchRect.x = x;
 		stretchRect.y = y;
-		stretchRect.w = (gScreenSurface->h * surface->w) / surface->h;
-		stretchRect.h = gScreenSurface->h;
+		//stretchRect.w = (gScreenSurface->h * surface->w) / surface->h;
+		//stretchRect.h = gScreenSurface->h;
+		stretchRect.h = surface->h;
+		stretchRect.w = surface->w;
 		SDL_BlitScaled(surface, NULL, gScreenSurface, &stretchRect);
 	}
 	else if (surface->w > gScreenSurface->w)
@@ -128,12 +130,31 @@ void RenderManager::drawSurface(SDL_Surface* surface, float x, float y)
 		SDL_Rect stretchRect;
 		stretchRect.x = x;
 		stretchRect.y = y;
-		stretchRect.w = gScreenSurface->w;
-		stretchRect.h = (gScreenSurface->w * surface->h) / surface->w;
+		//stretchRect.w = gScreenSurface->w;
+		//stretchRect.h = (gScreenSurface->w * surface->h) / surface->w;
+		stretchRect.h = surface->h;
+		stretchRect.w = surface->w;
 		SDL_BlitScaled(surface, NULL, gScreenSurface, &stretchRect);
 	}
-	else
-		SDL_BlitSurface(surface, NULL, gScreenSurface, NULL);
+	//else
+		//SDL_BlitSurface(surface, NULL, gScreenSurface, NULL);
+	SDL_Rect stretchRect;
+	stretchRect.x = x;
+	stretchRect.y = y;
+	//stretchRect.w = gScreenSurface->w;
+	//stretchRect.h = (gScreenSurface->w * surface->h) / surface->w;
+	stretchRect.h = surface->h;
+	stretchRect.w = surface->w;
+	SDL_BlitScaled(surface, NULL, gScreenSurface, &stretchRect);
+}*/
+void RenderManager::drawSurface(SDL_Surface* surface, float x, float y)
+{
+	SDL_Rect stretchRect;
+	stretchRect.x = x;
+	stretchRect.y = y;
+	stretchRect.h = surface->h;
+	stretchRect.w = surface->w;
+	SDL_BlitScaled(surface, NULL, gScreenSurface, &stretchRect);
 }
 void RenderManager::close() {
 	//Deallocate surface

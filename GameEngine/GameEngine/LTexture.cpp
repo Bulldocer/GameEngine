@@ -23,7 +23,7 @@ bool LTexture::loadFromFile(char* path) {
 	{
 		mWidth = image->w;
 		mHeight = image->h;
-		mTexture = ManagerOfManagers::GetInstance().getRender().loadTexture(image);
+		//mTexture = ManagerOfManagers::GetInstance().getRender().loadTexture(image);
 	}
 	SDL_FreeSurface(image);
 	return success;
@@ -48,7 +48,7 @@ void LTexture::render(int x, int y, SDL_Rect* clip)
 	}
 
 	//Render to screen
-	SDL_RenderCopy(ManagerOfManagers::GetInstance().getRender().gRenderer, mTexture, clip, &renderQuad);
+	//SDL_RenderCopy(ManagerOfManagers::GetInstance().getRender().gRenderer, mTexture, clip, &renderQuad);
 }
 
 int LTexture::getWidth(){

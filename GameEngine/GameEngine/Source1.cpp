@@ -18,12 +18,28 @@ int main(int argc, char* args[])
 		image = ManagerOfManagers::GetInstance().getRender().loadSurfacePNG("Images/loaded.png");
 		if (image != NULL)
 		{
-			//Apply the image
-			ManagerOfManagers::GetInstance().getRender().drawSurface(image,0,0);
-			//Update the surface
-			SDL_UpdateWindowSurface(ManagerOfManagers::GetInstance().getRender().gWindow);
-			//Wait two seconds
-			SDL_Delay(20000);
+			//Main loop flag
+			bool quit = false;
+			//Event handler
+			SDL_Event e;
+			//While application is running
+			while (!quit)
+			{
+				//Handle events on queue
+				while (SDL_PollEvent(&e) != 0)
+				{
+					//User requests quit
+					if (e.type == SDL_QUIT)
+					{
+						quit = true;
+					}
+				}
+				//Apply the image
+				ManagerOfManagers::GetInstance().getRender().drawSurface(image, 100, 100);
+				//Update the surface
+				SDL_UpdateWindowSurface(ManagerOfManagers::GetInstance().getRender().gWindow);				
+			}
+				
 		}
 	}
 	//Deallocate surface
