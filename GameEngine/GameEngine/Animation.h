@@ -6,10 +6,10 @@ class Animation
 public:
 	Animation();
 	~Animation();
-	const int ANIMATION_FRAMES = 0;
-	SDL_Rect gSpriteClips[ANIMATION_FRAMES];
+	static const int ANIMATION_FRAMES;
+	SDL_Rect gSpriteClips[4];
 	LTexture gSpriteSheetTexture;
 	int frame = 0;
-	void render();
+	void render(int x, int y);
 };
 

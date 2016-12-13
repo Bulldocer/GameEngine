@@ -34,8 +34,8 @@ bool RenderManager:: openWindow() {
 		{
 			//Get window surface
 			gScreenSurface = SDL_GetWindowSurface(gWindow);
-			//Create renderer for window
-			gRenderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+			//Create renderer for window COSAS PARA ANIMAR QUE NO FUNCIONAN
+			/*gRenderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 			if (gRenderer == NULL)
 			{
 				printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
@@ -53,7 +53,7 @@ bool RenderManager:: openWindow() {
 					printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
 					success = false;
 				}
-			}
+			}*/
 		}
 	}
 
@@ -141,10 +141,10 @@ void RenderManager::close() {
 	gScreenSurface = NULL;
 
 	//Destroy window
-	SDL_DestroyRenderer(gRenderer);
+	//SDL_DestroyRenderer(gRenderer); COSAS DE ANIMACION QUE NO FUNCIONAN
 	SDL_DestroyWindow(gWindow);
 	gWindow = NULL;
-	gRenderer = NULL;
+	//gRenderer = NULL; COSAS DE ANIMACION QUE NO FUNCIONAN
 
 
 	//Quit SDL subsystems
@@ -152,7 +152,7 @@ void RenderManager::close() {
 	SDL_Quit();
 }
 
-SDL_Texture* RenderManager::loadTexture(SDL_Surface* surface)
+/*SDL_Texture* RenderManager::loadTexture(SDL_Surface* surface)
 {
 	//The final texture
 	SDL_Texture* newTexture = NULL;
@@ -162,4 +162,4 @@ SDL_Texture* RenderManager::loadTexture(SDL_Surface* surface)
 		printf("Unable to create texture from surface! SDL Error: %s\n",SDL_GetError());
 	}
 	return newTexture;
-}
+}*/

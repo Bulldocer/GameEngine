@@ -17,13 +17,13 @@ public:
 	SDL_Surface* loadSurfacePNG(char* path);
 	void close();
 	void drawSurface(SDL_Surface* surface, float x, float y); //dibuja la superficie optimizada a nuestra ventana en una posición determinada
-	SDL_Texture* loadTexture(SDL_Surface* surface);  //carga una hoja de sprites
+	//SDL_Texture* loadTexture(SDL_Surface* surface);  //carga una hoja de sprites COSAS DEL RENDER QUE NO FUNCIONAN
 	//The window we'll be rendering to
 	SDL_Window* gWindow = NULL;
 	//The surface contained by the window
 	SDL_Surface* gScreenSurface = NULL;
-	//The window renderer
-	SDL_Renderer* gRenderer = NULL;
+	//The window renderer COSAS PARA ANIMAR QUE NO FUNCIONAN
+	//SDL_Renderer* gRenderer = NULL;
 	
 private:	
 	RenderManager();

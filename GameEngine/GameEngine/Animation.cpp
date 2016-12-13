@@ -1,7 +1,7 @@
 #include "Animation.h"
 #include "ManagerOfManagers.h"
 
-
+const int Animation::ANIMATION_FRAMES = 4;
 
 Animation::Animation()
 {
@@ -12,13 +12,13 @@ Animation::~Animation()
 {
 }
 
-void Animation::render() {
+void Animation::render(int x, int y) {
 	//Render current frame
 	SDL_Rect* currentClip = &gSpriteClips[frame / ANIMATION_FRAMES];
-	gSpriteSheetTexture.render((SCREEN_WIDTH - currentClip->w) / 2, (SCREEN_HEIGHT - currentClip->h) / 2, currentClip);
+	gSpriteSheetTexture.render(x, y, currentClip);
 
 	//Update screen
-	SDL_RenderPresent(ManagerOfManagers::GetInstance().getRender().gRenderer);
+	
 
 	//Go to next frame
 	++frame;

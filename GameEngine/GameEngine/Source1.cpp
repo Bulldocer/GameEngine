@@ -1,5 +1,6 @@
 #include "ManagerOfManagers.h"
 #include <SDL.h>
+#include "Animation.h"
 int main(int argc, char* args[])
 {	
 	ManagerOfManagers::CreateSingleton();
