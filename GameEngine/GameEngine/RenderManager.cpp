@@ -34,6 +34,13 @@ bool RenderManager:: openWindow() {
 		{
 			//Get window surface
 			gScreenSurface = SDL_GetWindowSurface(gWindow);
+			//Initialize PNG loading
+			int imgFlags = IMG_INIT_PNG;
+			if (!(IMG_Init(imgFlags) & imgFlags))
+			{
+				printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
+				success = false;
+			}
 			//Create renderer for window COSAS PARA ANIMAR QUE NO FUNCIONAN
 			/*gRenderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 			if (gRenderer == NULL)

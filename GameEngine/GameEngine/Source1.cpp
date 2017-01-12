@@ -16,12 +16,15 @@ int main(int argc, char* args[])
 	{
 		//Load media
 		image = ManagerOfManagers::GetInstance().getRender().loadSurfacePNG("Images/loaded.png");
+
+		ManagerOfManagers::GetInstance().getSound().loadMusic("Sound/La_cabalgata_de_las_Valkirias_-_Richard_Wagner.wav");
 		if (image != NULL)
 		{
 			//Main loop flag
 			bool quit = false;
 			//Event handler
 			SDL_Event e;
+			int x = 100;
 			//While application is running
 			while (!quit)
 			{
@@ -33,9 +36,18 @@ int main(int argc, char* args[])
 					{
 						quit = true;
 					}
+					if (e.type == SDL_KEYDOWN)
+					{
+						if (e.key.keysym.sym == SDLK_1)
+						{
+							ManagerOfManagers::GetInstance().getSound().playMusic();
+							x += 100;
+						}
+					}
+
 				}
 				//Apply the image
-				ManagerOfManagers::GetInstance().getRender().drawSurface(image, 100, 100);
+				ManagerOfManagers::GetInstance().getRender().drawSurface(image, x, 100);
 				//Update the surface
 				SDL_UpdateWindowSurface(ManagerOfManagers::GetInstance().getRender().gWindow);				
 			}

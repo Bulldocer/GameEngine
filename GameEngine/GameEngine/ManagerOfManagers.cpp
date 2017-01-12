@@ -25,8 +25,13 @@ void ManagerOfManagers::initialice() {
 	HUDManager::CreateSingleton();
 	RenderManager::CreateSingleton();
 
+	SoundManager::GetInstance().init();
 }
 
 RenderManager& ManagerOfManagers:: getRender() {
 	return RenderManager::GetInstance();
+};
+
+SoundManager& ManagerOfManagers::getSound() {
+	return SoundManager::GetInstance();
 };
