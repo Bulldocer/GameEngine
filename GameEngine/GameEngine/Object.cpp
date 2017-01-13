@@ -11,23 +11,25 @@ Object::~Object()
 {
 }
 
-Component* Object::getComponent(int pos) {
-	return components.at(pos);
-};
-void Object::addComponent(Component* component) {
-	components.push_back(component);
-};
-
-
 void Object::update() {
-	for (unsigned i = 0; i<components.size(); i++)
-		components.at(i)->update();
+	image->update();
 };
 void Object::close() {
-	for (unsigned i = 0; i < components.size(); i++)
-	{
-		components.at(i)->close();
-		delete components.at(i);
-	}		
+	image->close();
+	sound->close();
+	delete transform;
+	delete collider;
+	delete sound;
+	delete image;
 };
+
+void Object::init() {
+	transform = new Transform;
+	transform->x = 0;
+	transform->y = 0;
+	collider = new Collider;
+	sound = new SoundComponent;
+	image = new ImageComponent;
+	image->setTransform(transform);
+}
 

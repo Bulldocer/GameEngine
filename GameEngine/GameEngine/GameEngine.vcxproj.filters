@@ -66,9 +66,6 @@
     <ClCompile Include="Collider.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Logic.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Object.h">
@@ -106,9 +103,6 @@
     </ClInclude>
     <ClInclude Include="Collider.h">
       <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Logic.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

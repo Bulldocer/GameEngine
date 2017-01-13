@@ -129,7 +129,6 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ImageComponent.cpp" />
     <ClCompile Include="InputManager.cpp" />
-    <ClCompile Include="Logic.cpp" />
     <ClCompile Include="ManagerOfManagers.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
@@ -145,7 +144,6 @@
     <ClInclude Include="Component.h" />
     <ClInclude Include="ImageComponent.h" />
     <ClInclude Include="InputManager.h" />
-    <ClInclude Include="Logic.h" />
     <ClInclude Include="ManagerOfManagers.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectManager.h" />

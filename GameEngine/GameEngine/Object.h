@@ -1,18 +1,19 @@
 #pragma once
-#include "Component.h"
-#include <iostream>
-#include <vector>
+#include "Collider.h"
+#include "ImageComponent.h"
+#include "SoundComponent.h"
+#include "Transform.h"
 class Object
 {
 public:
 	Object();
 	virtual ~Object();
-	Component* getComponent(int pos);
-	void addComponent(Component* component);
+	void init();
 	void update();
 	void close();
-private:
-
-	std::vector<Component*> components;	
+	Transform* transform;
+	Collider* collider;
+	SoundComponent* sound;
+	ImageComponent* image;
 };
 

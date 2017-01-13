@@ -28,7 +28,6 @@ void ManagerOfManagers::initialice() {
 	else
 	{
 		this->getInput().quit = false;
-		logic.init();
 	}
 }
 
@@ -49,18 +48,12 @@ ObjectManager& ManagerOfManagers::getObjects() {
 }
 
 void ManagerOfManagers::update() {
-	//While application is running
-	while (!this->getInput().quit)
-	{
-		//Handle events on queue
-		this->getInput().update();
-		logic.update();
-		//Update objects and render them
-		this->getObjects().updateObjects();
-		//Update the surface
-		this->getRender().update();
-	}
-	this->close();
+	//Handle events on queue
+	this->getInput().update();
+	//Update objects and render them
+	this->getObjects().updateObjects();
+	//Update the surface
+	this->getRender().update();
 }
 
 void ManagerOfManagers::close() {

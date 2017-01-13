@@ -1,3 +1,11 @@
-﻿  Source1.cpp
+﻿  RenderManager.cpp
+d:\repository\gameengine\gameengine\rendermanager.cpp(118): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\repository\gameengine\gameengine\rendermanager.cpp(119): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  Source1.cpp
+  SoundComponent.cpp
+  ManagerOfManagers.cpp
+  ImageComponent.cpp
   GameEngine.vcxproj -> D:\Repository\GameEngine\Debug\GameEngine.exe
   GameEngine.vcxproj -> D:\Repository\GameEngine\Debug\GameEngine.pdb (Partial PDB)

@@ -4,7 +4,6 @@
 #include "SoundManager.h"
 #include "InputManager.h"
 #include "ObjectManager.h"
-#include "Logic.h"
 
 class ManagerOfManagers : public Singleton<ManagerOfManagers>
 {
@@ -17,10 +16,9 @@ public:
 	InputManager& getInput();
 	void initialice();
 	void update();
+	void close();
 private:
 	ManagerOfManagers();
-	~ManagerOfManagers();
-	void close();
-	Logic logic;
+	~ManagerOfManagers();	
 };
 

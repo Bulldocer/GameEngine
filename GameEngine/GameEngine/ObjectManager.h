@@ -1,6 +1,8 @@
 #pragma once
 #include "Singleton.h"
 #include "Object.h"
+#include <iostream>
+#include <vector>
 class ObjectManager : public Singleton<ObjectManager>
 {
 	friend class Singleton<ObjectManager>;

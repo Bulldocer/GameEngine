@@ -27,5 +27,6 @@ void ImageComponent::setTransform(Transform* trans) {
 }
 
 void ImageComponent::update() {
-	ManagerOfManagers::GetInstance().getRender().drawSurface(sprite,transform->x,transform->y);
+	if(sprite!=NULL)
+		ManagerOfManagers::GetInstance().getRender().drawTexture(sprite,transform->x,transform->y);
 }
