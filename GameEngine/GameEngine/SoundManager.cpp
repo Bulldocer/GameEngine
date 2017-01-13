@@ -30,66 +30,18 @@ void SoundManager::init() {
 }
 
 void SoundManager::close() {
-	//Free the sound effects
-	Mix_FreeChunk(gEffect1);
-	Mix_FreeChunk(gEffect2);
-	Mix_FreeChunk(gEffect3);
-	Mix_FreeChunk(gEffect4);
-	gEffect1 = NULL;
-	gEffect2 = NULL;
-	gEffect3 = NULL;
-	gEffect4 = NULL;
-
-	//Free the music
-	Mix_FreeMusic(gMusic);
-	gMusic = NULL;
-
 	//Quit SDL subsystems
 	Mix_Quit();
 }
 
-void SoundManager::playMusic() {
-	//If there is no music playing
-	if (Mix_PlayingMusic() == 0)
-	{
-		//Play the music
-		Mix_PlayMusic(gMusic, -1);
-	}
-	else
-	{
-		//If the music is paused
-		if (Mix_PausedMusic() == 1)
-		{
-			//Resume the music
-			Mix_ResumeMusic();
-		}
-		//If the music is playing
-		else
-		{
-			//Pause the music
-			Mix_PauseMusic();
-		}
-	}
+void SoundManager::playMusic(Mix_Music* music) {
+	
+	Mix_PlayMusic(music, -1);
 }
 
-/*void SoundManager::playEffect(std::string effect) {
-	switch (effect) {
-	case "effect1":
-		Mix_PlayChannel(-1, gEffect1, 0);
-		break;
-	case "effect2":
-		Mix_PlayChannel(-1, gEffect2, 0);
-		break;
-	case "effect3":
-		Mix_PlayChannel(-1, gEffect3, 0);
-		break;
-	case "effect4":
-		Mix_PlayChannel(-1, gEffect4, 0);
-		break;
-	default:
-		break;
-	}
-}*/
+void SoundManager::playEffect(Mix_Chunk* effect) {
+	Mix_PlayChannel(-1, effect, 0);
+}
 
 Mix_Music* SoundManager::loadMusic(char* path) {
 	Mix_Music* a= Mix_LoadMUS(path);

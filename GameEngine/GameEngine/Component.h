@@ -4,5 +4,7 @@ class Component
 public:
 	Component();
 	virtual ~Component();
+	virtual void close();
+	virtual void update();
 };
 

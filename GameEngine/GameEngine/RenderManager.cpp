@@ -179,3 +179,8 @@ void RenderManager::close() {
 	}
 	return newTexture;
 }*/
+
+
+void RenderManager::update() {
+	SDL_UpdateWindowSurface(gWindow);
+}

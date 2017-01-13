@@ -1,3 +1,4 @@
+#pragma once
 #include "Singleton.h"
 //Using SDL, SDL_image and standard IO
 #include <SDL.h>
@@ -16,6 +17,7 @@ public:
 	SDL_Surface* loadSurfaceBMP(char* path);  //pasamos la direccion de la imagen y devuelve un puntero de una superficie con la imagen
 	SDL_Surface* loadSurfacePNG(char* path);
 	void close();
+	void update();
 	void drawSurface(SDL_Surface* surface, float x, float y); //dibuja la superficie optimizada a nuestra ventana en una posición determinada
 	//SDL_Texture* loadTexture(SDL_Surface* surface);  //carga una hoja de sprites COSAS DEL RENDER QUE NO FUNCIONAN
 	//The window we'll be rendering to

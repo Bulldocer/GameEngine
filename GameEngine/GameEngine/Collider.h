@@ -7,5 +7,6 @@ public:
 	~Collider();
 	float width;
 	float height;
+
 };
 

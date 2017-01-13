@@ -1,3 +1,4 @@
+#pragma once
 #include "Singleton.h"
 #include <stdio.h>
 #include <cstdio>  
@@ -9,10 +10,13 @@ class InputManager : public Singleton<InputManager>
 	friend class Singleton<InputManager>;
 public:
 	std::map<int, int>  mKeys;
-	void EventManagement();
+	void init();
+	void update();
+	bool quit;
+	
 private:	
 	void OnKeyDown(SDL_Event* event);
-	void OnKeyUp(SDL_Event* event);
+	void OnKeyUp(SDL_Event* event);	
 	InputManager();
 	~InputManager();
 };

@@ -1,12 +1,20 @@
 #pragma once
 #include "Component.h"
-#include "Sprite.h"
+#include "Transform.h"
+#include <SDL.h>
+#include <SDL_image.h>
+
 class ImageComponent : public Component
 {
 public:
 	ImageComponent();
 	~ImageComponent();
-	Sprite* sprite;
-	Sprite* anim[]; //array de punteros a sprites
+	void loadSprite(char* path);
+	void setTransform(Transform* transform);
+	void close();
+	void update();
+private:
+	SDL_Surface* sprite;
+	Transform* transform;
 };
 

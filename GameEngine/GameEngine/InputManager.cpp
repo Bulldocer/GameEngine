@@ -11,13 +11,17 @@ InputManager::~InputManager()
 {
 }
 
-void InputManager::EventManagement()
+void InputManager::init() {
+	mKeys[SDL_KEYUP] = 0;
+}
+void InputManager::update()
 {
 	SDL_Event event;
 
 	if (SDL_PollEvent(&event)) {
 		switch (event.type) {
 		case SDL_QUIT:
+			quit = true;
 			break;
 		case SDL_KEYDOWN:
 			OnKeyDown(&event);

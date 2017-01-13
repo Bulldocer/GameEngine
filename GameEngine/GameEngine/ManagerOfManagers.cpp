@@ -1,9 +1,4 @@
 #include "ManagerOfManagers.h"
-#include "InputManager.h"
-#include "AssetManager.h"
-#include "ObjectManager.h"
-#include "SoundManager.h"
-#include "HUDManager.h"
 
 
 
@@ -19,13 +14,22 @@ ManagerOfManagers::~ManagerOfManagers()
 void ManagerOfManagers::initialice() {
 		
 	InputManager::CreateSingleton();
-	AssetManager::CreateSingleton();
 	SoundManager::CreateSingleton();
 	ObjectManager::CreateSingleton();
-	HUDManager::CreateSingleton();
 	RenderManager::CreateSingleton();
 
+	this->getInput().init();
 	SoundManager::GetInstance().init();
+	if (!ManagerOfManagers::GetInstance().getRender().openWindow())
+	{
+		printf("Failed to initialize!\n");
+		this->getInput().quit = true;
+	}
+	else
+	{
+		this->getInput().quit = false;
+		logic.init();
+	}
 }
 
 RenderManager& ManagerOfManagers:: getRender() {
@@ -35,3 +39,32 @@ RenderManager& ManagerOfManagers:: getRender() {
 SoundManager& ManagerOfManagers::getSound() {
 	return SoundManager::GetInstance();
 };
+
+InputManager& ManagerOfManagers::getInput() {
+	return InputManager::GetInstance();
+}
+
+ObjectManager& ManagerOfManagers::getObjects() {
+	return ObjectManager::GetInstance();
+}
+
+void ManagerOfManagers::update() {
+	//While application is running
+	while (!this->getInput().quit)
+	{
+		//Handle events on queue
+		this->getInput().update();
+		logic.update();
+		//Update objects and render them
+		this->getObjects().updateObjects();
+		//Update the surface
+		this->getRender().update();
+	}
+	this->close();
+}
+
+void ManagerOfManagers::close() {
+	this->getObjects().closeObjects();
+	this->getSound().close();
+	this->getRender().close();
+}
