@@ -1,11 +1,7 @@
-﻿  RenderManager.cpp
-d:\repository\gameengine\gameengine\rendermanager.cpp(118): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-d:\repository\gameengine\gameengine\rendermanager.cpp(119): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  Generating Code...
-  Skipping... (no relevant changes detected)
-  Source1.cpp
-  SoundComponent.cpp
-  ManagerOfManagers.cpp
-  ImageComponent.cpp
-  GameEngine.vcxproj -> D:\Repository\GameEngine\Debug\GameEngine.exe
-  GameEngine.vcxproj -> D:\Repository\GameEngine\Debug\GameEngine.pdb (Partial PDB)
+﻿  ObjectManager.cpp
+d:\repository\gameengine\gameengine\objectmanager.cpp(42): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\repository\gameengine\gameengine\objectmanager.cpp(43): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\repository\gameengine\gameengine\objectmanager.cpp(47): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\repository\gameengine\gameengine\objectmanager.cpp(48): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+Singleton.obj : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+  GameEngine.vcxproj -> D:\Repository\GameEngine\Debug\GameEngine.lib

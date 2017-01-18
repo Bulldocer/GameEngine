@@ -1,5 +1,6 @@
 #pragma once
 #include "Component.h"
+#include <SDL.h>
 class Transform : public Component
 {
 public:
@@ -7,6 +8,7 @@ public:
 	~Transform();
 	float x;
 	float y;
-	float direction[2];
+	double angle;
+	SDL_Point* center;
 };
 

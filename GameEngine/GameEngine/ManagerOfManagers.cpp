@@ -17,9 +17,11 @@ void ManagerOfManagers::initialice() {
 	SoundManager::CreateSingleton();
 	ObjectManager::CreateSingleton();
 	RenderManager::CreateSingleton();
+	TimeManager::CreateSingleton();
 
 	this->getInput().init();
 	SoundManager::GetInstance().init();
+	TimeManager::GetInstance().init();
 	if (!ManagerOfManagers::GetInstance().getRender().openWindow())
 	{
 		printf("Failed to initialize!\n");
@@ -45,6 +47,10 @@ InputManager& ManagerOfManagers::getInput() {
 
 ObjectManager& ManagerOfManagers::getObjects() {
 	return ObjectManager::GetInstance();
+}
+
+TimeManager& ManagerOfManagers::getTime() {
+	return TimeManager::GetInstance();
 }
 
 void ManagerOfManagers::update() {

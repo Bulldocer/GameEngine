@@ -1,5 +1,4 @@
 #pragma once
-#include "Collider.h"
 #include "ImageComponent.h"
 #include "SoundComponent.h"
 #include "Transform.h"
@@ -12,7 +11,6 @@ public:
 	void update();
 	void close();
 	Transform* transform;
-	Collider* collider;
 	SoundComponent* sound;
 	ImageComponent* image;
 };

@@ -4,6 +4,7 @@
 #include "SoundManager.h"
 #include "InputManager.h"
 #include "ObjectManager.h"
+#include "TimeManager.h"
 
 class ManagerOfManagers : public Singleton<ManagerOfManagers>
 {
@@ -14,6 +15,7 @@ public:
 	SoundManager& getSound();
 	ObjectManager& getObjects();
 	InputManager& getInput();
+	TimeManager& getTime();
 	void initialice();
 	void update();
 	void close();

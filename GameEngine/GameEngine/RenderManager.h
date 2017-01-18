@@ -7,8 +7,8 @@
 #include <string.h>
 
 //Screen dimension constants
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+const int SCREEN_WIDTH = 800;
+const int SCREEN_HEIGHT = 600;
 class RenderManager : public Singleton<RenderManager>
 {
 friend class Singleton<RenderManager>;
@@ -17,7 +17,7 @@ public:
 	void close();
 	void update();
 	void clearScreen();
-	void drawTexture(SDL_Surface* texture, float x, float y); //dibuja una textura en una posición determinada
+	void drawTexture(SDL_Surface* surface, SDL_Texture* texture, float x, float y, double angle, SDL_Point* center); //dibuja una textura en una posición determinada
 
 	SDL_Surface* loadSurfacePNG(char* path);
 	SDL_Texture* loadTexture(SDL_Surface* surface);  //cambia una superficie a una textura para dibujarla con el render

@@ -13,8 +13,9 @@ public:
 	void setTransform(Transform* transform);
 	void close();
 	void update();
-private:
 	SDL_Surface* sprite;
+private:	
+	SDL_Texture* texture;
 	Transform* transform;
 };
 

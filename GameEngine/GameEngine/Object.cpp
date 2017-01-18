@@ -18,7 +18,6 @@ void Object::close() {
 	image->close();
 	sound->close();
 	delete transform;
-	delete collider;
 	delete sound;
 	delete image;
 };
@@ -27,7 +26,7 @@ void Object::init() {
 	transform = new Transform;
 	transform->x = 0;
 	transform->y = 0;
-	collider = new Collider;
+	transform->angle = 0;
 	sound = new SoundComponent;
 	image = new ImageComponent;
 	image->setTransform(transform);

@@ -1,12 +1,11 @@
 #pragma once
 #include "Component.h"
+#include <SDL.h>
 class Collider : Component
 {
 public:
 	Collider();
 	~Collider();
-	float width;
-	float height;
-
+	SDL_Rect stretchRect;
 };
 

@@ -11,6 +11,7 @@ public:
 	void deleteObject(Object* object);
 	void updateObjects();
 	void closeObjects();
+	bool checkCollision(Object* obj1, Object* obj2);
 private:
 	ObjectManager();
 	~ObjectManager();

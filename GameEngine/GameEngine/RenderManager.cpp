@@ -112,15 +112,14 @@ SDL_Surface* RenderManager::loadSurfacePNG(char* path)
 		SDL_BlitSurface(surface, NULL, gScreenSurface, NULL);
 }*/
 
-void RenderManager::drawTexture(SDL_Surface* surface, float x, float y)
+void RenderManager::drawTexture(SDL_Surface* surface,SDL_Texture* texture, float x, float y, double angle, SDL_Point* center)
 {
 	SDL_Rect stretchRect;
 	stretchRect.x = x;
 	stretchRect.y = y;
 	stretchRect.h = surface->h;
 	stretchRect.w = surface->w;
-	SDL_Texture* texture = loadTexture(surface);
-	SDL_RenderCopy(gRenderer, texture, NULL, &stretchRect);
+	SDL_RenderCopyEx(gRenderer, texture, NULL, &stretchRect, angle, center, SDL_FLIP_NONE);
 }
 
 void RenderManager::close() {

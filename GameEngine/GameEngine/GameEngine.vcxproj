@@ -25,13 +25,13 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -69,7 +69,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>..\SDL2_mixer-2.0.1\include;..\SDL2-2.0.5\include;$(IncludePath);..\SDL2_image-2.0.1\include</IncludePath>
+    <IncludePath>..\SDL2_mixer-2.0.1\include;..\SDL2_image-2.0.1\include;..\SDL2-2.0.5\include;$(IncludePath)</IncludePath>
     <LibraryPath>..\SDL2_mixer-2.0.1\lib\x86;..\SDL2_image-2.0.1\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -125,7 +125,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ImageComponent.cpp" />
     <ClCompile Include="InputManager.cpp" />
@@ -137,10 +136,10 @@
     <ClCompile Include="SoundComponent.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="Source1.cpp" />
+    <ClCompile Include="TimeManager.cpp" />
     <ClCompile Include="Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Collider.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ImageComponent.h" />
     <ClInclude Include="InputManager.h" />
@@ -151,6 +150,7 @@
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="SoundComponent.h" />
     <ClInclude Include="SoundManager.h" />
+    <ClInclude Include="TimeManager.h" />
     <ClInclude Include="Transform.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
