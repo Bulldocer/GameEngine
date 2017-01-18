@@ -1,5 +1,7 @@
 #include "RenderManager.h"
-
+#include <iostream>
+#include <cstring>
+#include <string>
 
 
 RenderManager::RenderManager()
@@ -51,6 +53,15 @@ bool RenderManager:: openWindow() {
 					printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
 					success = false;
 				}
+
+				//Initialize Text library
+				if (TTF_Init() == -1)
+				{
+					printf("SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError());
+					success = false;
+				}else{
+					gFont = TTF_OpenFont("Fonts/ArcadeClassic.ttf", 28);
+				}
 			}
 			//Get window surface
 			gScreenSurface = SDL_GetWindowSurface(gWindow);
@@ -86,31 +97,6 @@ SDL_Surface* RenderManager::loadSurfacePNG(char* path)
 
 	return optimizedSurface;
 }
-//funcion vieja con la que escalaba una imagen al tamaño de la pantalla
-/*void RenderManager::drawSurface(SDL_Surface* surface, float x, float y)
-{
-	//Apply the image stretched
-	if (surface->h > gScreenSurface->h)
-	{
-		SDL_Rect stretchRect;
-		stretchRect.x = x;
-		stretchRect.y = y;
-		stretchRect.w = (gScreenSurface->h * surface->w) / surface->h;
-		stretchRect.h = gScreenSurface->h;
-		SDL_BlitScaled(surface, NULL, gScreenSurface, &stretchRect);
-	}
-	else if (surface->w > gScreenSurface->w)
-	{
-		SDL_Rect stretchRect;
-		stretchRect.x = x;
-		stretchRect.y = y;
-		stretchRect.w = gScreenSurface->w;
-		stretchRect.h = (gScreenSurface->w * surface->h) / surface->w;
-		SDL_BlitScaled(surface, NULL, gScreenSurface, &stretchRect);
-	}
-	else
-		SDL_BlitSurface(surface, NULL, gScreenSurface, NULL);
-}*/
 
 void RenderManager::drawTexture(SDL_Surface* surface,SDL_Texture* texture, float x, float y, double angle, SDL_Point* center)
 {
@@ -120,6 +106,22 @@ void RenderManager::drawTexture(SDL_Surface* surface,SDL_Texture* texture, float
 	stretchRect.h = surface->h;
 	stretchRect.w = surface->w;
 	SDL_RenderCopyEx(gRenderer, texture, NULL, &stretchRect, angle, center, SDL_FLIP_NONE);
+}
+
+void RenderManager::drawText(const char* text) {
+	SDL_Color textColor = { 255, 255, 255 };
+	if (gFont != NULL) {
+		SDL_Surface* textSurface = TTF_RenderText_Solid(gFont, text, textColor);
+		SDL_Texture* texture = SDL_CreateTextureFromSurface(gRenderer, textSurface);
+		SDL_Rect stretchRect;
+		stretchRect.x = 20;
+		stretchRect.y = 60;
+		stretchRect.h = textSurface->h;
+		stretchRect.w = textSurface->w;
+		SDL_RenderCopy(gRenderer, texture, NULL, &stretchRect);
+		SDL_FreeSurface(textSurface);
+		SDL_DestroyTexture(texture);
+	}
 }
 
 void RenderManager::close() {
@@ -151,8 +153,13 @@ SDL_Texture* RenderManager::loadTexture(SDL_Surface* surface)
 	return newTexture;
 }
 
+void RenderManager::loadScore(int se) {
+	score = se;
+}
 
 void RenderManager::update() {
+	std::string aux = "SCORE " + std::to_string(score);
+	this->drawText(aux.c_str());
 	SDL_RenderPresent(gRenderer);
 }
 

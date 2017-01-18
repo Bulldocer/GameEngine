@@ -64,6 +64,7 @@ int main(int argc, char* args[])
 	while (!ManagerOfManagers::GetInstance().getInput().quit)
 	{
 		int timeElapsed = 0;
+		//ManagerOfManagers::GetInstance().getRender().drawText("HOLA MAMON");
 		ManagerOfManagers::GetInstance().update();
 
 		// Update logic

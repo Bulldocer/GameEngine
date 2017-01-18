@@ -5,6 +5,7 @@
 #include <SDL_image.h>
 #include <stdio.h>
 #include <string.h>
+#include <SDL_ttf.h>
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 800;
@@ -18,6 +19,7 @@ public:
 	void update();
 	void clearScreen();
 	void drawTexture(SDL_Surface* surface, SDL_Texture* texture, float x, float y, double angle, SDL_Point* center); //dibuja una textura en una posición determinada
+	void loadScore(int score);
 
 	SDL_Surface* loadSurfacePNG(char* path);
 	SDL_Texture* loadTexture(SDL_Surface* surface);  //cambia una superficie a una textura para dibujarla con el render
@@ -28,7 +30,10 @@ public:
 	//The window renderer
 	SDL_Renderer* gRenderer = NULL;
 	
-private:	
+private:
+	void drawText(const char* text);
+	TTF_Font*	gFont = NULL;
+	int score = 0;
 	RenderManager();
 	~RenderManager();
 };

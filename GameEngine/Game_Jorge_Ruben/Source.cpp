@@ -38,6 +38,7 @@ int main(int argc, char* args[])
 	ship->init();
 	ship->transform->x = 0;
 	ship->transform->y = 500;
+	ship->sound->loadEffect("Sound/FX-Lazer294.wav");
 	ship->image->loadSprite("Images/thrust_ship.png");
 
 	Object* music = new Object;
@@ -85,6 +86,8 @@ int main(int argc, char* args[])
 	ManagerOfManagers::GetInstance().getObjects().newObject(aux);
 
 	int timerNewAsteroid = 0;
+	int score = 0;
+	int timeShoot = 30;
 
 	//While application is running
 	while (!ManagerOfManagers::GetInstance().getInput().quit)
@@ -140,9 +143,6 @@ int main(int argc, char* args[])
 					vidas.pop_back();
 				}
 			}
-			/*if (ManagerOfManagers::GetInstance().getObjects().checkCollision(ship, asteroid)) {
-			asteroid->transform->y = 10;
-			}*/
 			//Comprobacion colison balas asteroide
 			for (unsigned i = 0; i < bullets.size(); i++) {
 				for (unsigned d = 0; d < asteroids.size(); d++) {
@@ -151,17 +151,23 @@ int main(int argc, char* args[])
 						bullets.erase(bullets.begin() + i);
 						ManagerOfManagers::GetInstance().getObjects().deleteObject(asteroids.at(d));
 						asteroids.erase(asteroids.begin() + d);
+						score++;
+						ManagerOfManagers::GetInstance().getRender().loadScore(score);
+						break;
 					}
 				}
 			}
 
 			//Creación de balas
-			if (ManagerOfManagers::GetInstance().getInput().mKeys[SDLK_SPACE]) {
+			timeShoot++;
+			if (ManagerOfManagers::GetInstance().getInput().mKeys[SDLK_SPACE] && timeShoot > 30) {
 				Object* aux = new Object;
 				aux->init();
 				aux->transform->x = ship->transform->x + (ship->image->sprite->w) / 2;
 				aux->transform->y = ship->transform->y - 5;
 				aux->image->loadSprite("Images/bullet.png");
+				ship->sound->playEffect();
+				timeShoot = 0;	
 				bullets.push_back(aux);
 				ManagerOfManagers::GetInstance().getObjects().newObject(aux);
 			}
