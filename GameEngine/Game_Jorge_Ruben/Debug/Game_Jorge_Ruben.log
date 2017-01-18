@@ -1,4 +1,4 @@
 ﻿  Source.cpp
-d:\repository\gameengine\game_jorge_ruben\source.cpp(106): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\repository\gameengine\game_jorge_ruben\source.cpp(82): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   Game_Jorge_Ruben.vcxproj -> D:\Repository\GameEngine\Debug\Game_Jorge_Ruben.exe
   Game_Jorge_Ruben.vcxproj -> D:\Repository\GameEngine\Debug\Game_Jorge_Ruben.pdb (Partial PDB)

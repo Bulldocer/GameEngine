@@ -83,13 +83,13 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../GameEngine</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Extension_Interface;../GameEngine</AdditionalIncludeDirectories>
       <AdditionalUsingDirectories>
       </AdditionalUsingDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\SDL2-2.0.5\lib\win32;../GameEngine</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../Extension_Interface;..\SDL2-2.0.5\lib\win32;../GameEngine</AdditionalLibraryDirectories>
       <MinimumRequiredVersion>
       </MinimumRequiredVersion>
       <SubSystem>Windows</SubSystem>
@@ -109,7 +109,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../GameEngine</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Extension_Interface;../GameEngine</AdditionalIncludeDirectories>
       <AdditionalUsingDirectories>
       </AdditionalUsingDirectories>
     </ClCompile>
@@ -117,7 +117,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\SDL2-2.0.5\lib\win32;../GameEngine</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../Extension_Interface;..\SDL2-2.0.5\lib\win32;../GameEngine</AdditionalLibraryDirectories>
       <MinimumRequiredVersion>
       </MinimumRequiredVersion>
       <SubSystem>Windows</SubSystem>
@@ -140,6 +140,9 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Extension_Interface\Extension_Interface.vcxproj">
+      <Project>{66b96f59-8660-4241-ae0b-610c4e73f26b}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\GameEngine\GameEngine.vcxproj">
       <Project>{c192b1ae-88cc-4bf8-a256-7c0c9d052a2f}</Project>
     </ProjectReference>

@@ -59,8 +59,6 @@ bool RenderManager:: openWindow() {
 				{
 					printf("SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError());
 					success = false;
-				}else{
-					gFont = TTF_OpenFont("Fonts/ArcadeClassic.ttf", 28);
 				}
 			}
 			//Get window surface
@@ -153,10 +151,6 @@ SDL_Texture* RenderManager::loadTexture(SDL_Surface* surface)
 	return newTexture;
 }
 
-void RenderManager::loadScore(int se) {
-	score = se;
-}
-
 void RenderManager::update() {
 	std::string aux = "SCORE " + std::to_string(score);
 	this->drawText(aux.c_str());
@@ -165,4 +159,12 @@ void RenderManager::update() {
 
 void RenderManager::clearScreen() {
 	SDL_RenderClear(gRenderer);
+}
+
+void RenderManager::loadScore(int se) {
+	score = se;
+}
+
+void RenderManager::loadFont(TTF_Font*	font) {
+	gFont = font;
 }

@@ -1,6 +1,7 @@
 #include "ManagerOfManagers.h"
 #include <iostream>
 #include <vector>
+#include "Interface.h"
 
 void wrap(Object* obj) {
 	if (obj->transform->x > 860) {
@@ -15,10 +16,6 @@ void wrap(Object* obj) {
 	if (obj->transform->y < -60) {
 		obj->transform->y = 660;
 	}
-}
-bool checkCollision(Object* obj1, Object* obj2) {
-
-	return false;
 }
 
 const float        UPDATE_INTERVAL = 1000.0f / 60.0f;
@@ -59,36 +56,15 @@ int main(int argc, char* args[])
 	std::vector<Object*> bullets;
 	std::vector<Object*> asteroids;
 
-	//Vidas
-	std::vector<Object*> vidas;
-	Object* aux = new Object;
-	aux->init();
-	aux->transform->x = 20;
-	aux->transform->y = 20;
-	aux->image->loadSprite("Images/heart.png");
-	vidas.push_back(aux);
-	ManagerOfManagers::GetInstance().getObjects().newObject(aux);
-
-	aux = new Object;
-	aux->init();
-	aux->transform->x = 40;
-	aux->transform->y = 20;
-	aux->image->loadSprite("Images/heart.png");
-	vidas.push_back(aux);
-	ManagerOfManagers::GetInstance().getObjects().newObject(aux);
-
-	aux = new Object;
-	aux->init();
-	aux->transform->x = 60;
-	aux->transform->y = 20;
-	aux->image->loadSprite("Images/heart.png");
-	vidas.push_back(aux);
-	ManagerOfManagers::GetInstance().getObjects().newObject(aux);
+	
 
 	int timerNewAsteroid = 0;
-	int score = 0;
 	int timeShoot = 30;
 
+	Interface* superDuperInterface = new Interface();
+	superDuperInterface->init("Images/heart.png", "Fonts/BACKTO1982.ttf", 3);
+
+	ManagerOfManagers::GetInstance().getRender().interfaceOn = true;
 	//While application is running
 	while (!ManagerOfManagers::GetInstance().getInput().quit)
 	{
@@ -138,9 +114,8 @@ int main(int argc, char* args[])
 				if (ManagerOfManagers::GetInstance().getObjects().checkCollision(ship, asteroids.at(i))) {
 					ManagerOfManagers::GetInstance().getObjects().deleteObject(asteroids.at(i));
 					asteroids.erase(asteroids.begin() + i);
-					Object* aux= vidas.back();
-					ManagerOfManagers::GetInstance().getObjects().deleteObject(aux);
-					vidas.pop_back();
+					superDuperInterface->subLives();
+					superDuperInterface->subScore(50);
 				}
 			}
 			//Comprobacion colison balas asteroide
@@ -151,8 +126,7 @@ int main(int argc, char* args[])
 						bullets.erase(bullets.begin() + i);
 						ManagerOfManagers::GetInstance().getObjects().deleteObject(asteroids.at(d));
 						asteroids.erase(asteroids.begin() + d);
-						score++;
-						ManagerOfManagers::GetInstance().getRender().loadScore(score);
+						superDuperInterface->addScore(10);
 						break;
 					}
 				}
@@ -170,9 +144,6 @@ int main(int argc, char* args[])
 				timeShoot = 0;	
 				bullets.push_back(aux);
 				ManagerOfManagers::GetInstance().getObjects().newObject(aux);
-			}
-			if (vidas.size() == 0) {
-				ManagerOfManagers::GetInstance().getInput().quit = true;
 			}
 			ManagerOfManagers::GetInstance().getRender().clearScreen();
 		}

@@ -20,6 +20,7 @@ public:
 	void clearScreen();
 	void drawTexture(SDL_Surface* surface, SDL_Texture* texture, float x, float y, double angle, SDL_Point* center); //dibuja una textura en una posición determinada
 	void loadScore(int score);
+	void loadFont(TTF_Font*	font);
 
 	SDL_Surface* loadSurfacePNG(char* path);
 	SDL_Texture* loadTexture(SDL_Surface* surface);  //cambia una superficie a una textura para dibujarla con el render
@@ -29,10 +30,11 @@ public:
 	SDL_Surface* gScreenSurface = NULL;
 	//The window renderer
 	SDL_Renderer* gRenderer = NULL;
-	
+	//Chek Interface
+	bool interfaceOn = false;
 private:
 	void drawText(const char* text);
-	TTF_Font*	gFont = NULL;
+	TTF_Font*	gFont;
 	int score = 0;
 	RenderManager();
 	~RenderManager();

@@ -16,11 +16,6 @@ void wrap(Object* obj) {
 		obj->transform->y = 660;
 	}
 }
-bool checkCollision(Object* obj1, Object* obj2) {
-
-	return false;
-}
-
 const float        UPDATE_INTERVAL = 1000.0f / 60.0f;
 int main(int argc, char* args[])
 {	
